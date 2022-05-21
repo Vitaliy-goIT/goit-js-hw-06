@@ -1,9 +1,17 @@
 const inputEl = document.querySelector('#validation-input');
-console.log(typeof inputEl.dataset.length);
 
 inputEl.addEventListener('blur', event => {
-  console.log(inputEl.value.length);
-  if (event.currentTarget.value.length != event.currentTarget.dataset.length) {
+  const dataLength = Number(event.currentTarget.dataset.length);
+  if (event.currentTarget.value.length === dataLength) {
+    event.currentTarget.classList.add('valid');
+    event.currentTarget.classList.remove('invalid');
+  } else {
     event.currentTarget.classList.add('invalid');
+    event.currentTarget.classList.remove('valid');
+  }
+
+  if (event.currentTarget.value.length === 0) {
+    event.currentTarget.classList.remove('invalid');
+    event.currentTarget.classList.remove('valid');
   }
 });
