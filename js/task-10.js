@@ -13,15 +13,19 @@ inputEl.addEventListener('change', event => {
 
   if (amount > 0) {
     createBtn.addEventListener('click', () => {
+      let sizeBox = 0;
       const create = function createBoxes(amount) {
-        for (let i = 1; i <= amount; i += 1) {
+        // for (let i = 1; i <= amount; i += 1) {
+        for (let i = inputEl.min; i <= amount; i += 1) {
+          let sizeBoxIncr = 30 + sizeBox;
           const box = document.createElement('div');
           box.style.backgroundColor = getRandomHexColor();
-          box.style.width = 30 + 'px';
-          box.style.height = 30 + 'px';
+          box.style.width = `${sizeBoxIncr}px`;
+          box.style.height = `${sizeBoxIncr}px`;
           boxes.append(box);
           console.log(box);
-          break;
+          sizeBox = sizeBoxIncr;
+          // break;
         }
       };
       create(amount);
