@@ -1,3 +1,11 @@
+/* Підкажіть будь ласка!!! Що роблю не так
+ *Дуже хочу зробити це завдання, але не можу зрозуміти
+ *що випускаю з виду, наче десь близько, але...
+ *Буду дуже вдячний, якщо в відео відповіді, натякнете, чи
+ * накнопите, підказочку, чи хоч дасте зрозуміти в який
+ *бік думати, шукати!..
+ *завчасно дякую!! */
+
 function getRandomHexColor() {
   return `#${Math.floor(Math.random() * 16777215)
     .toString(16)
@@ -14,7 +22,8 @@ inputEl.addEventListener('change', event => {
   console.log(amount);
 
   if (amount > 0) {
-    createBtn.addEventListener('click', () => {
+    createBtn.addEventListener('click', ev => {
+      console.dir(ev);
       const create = function createBoxes(amount) {
         let sizeBox = 30;
         let sizeBoxIncr = 10;
@@ -43,4 +52,8 @@ inputEl.addEventListener('change', event => {
   if (amount < 0) {
     alert('Введіть додатнє число!');
   }
+
+  destroyBtn.addEventListener('click', () => {
+    boxes.innerHTML = '';
+  });
 });
