@@ -1,16 +1,22 @@
-/* Підкажіть будь ласка!!! Що роблю не так
- *Дуже хочу зробити це завдання, але не можу зрозуміти
- *що випускаю з виду, наче десь близько, але...
- *Буду дуже вдячний, якщо в відео відповіді, натякнете, чи
- * накнопите, підказочку, чи хоч дасте зрозуміти в який
- *бік думати, шукати!..
- *завчасно дякую!! */
-
-function getRandomHexColor() {
+const getRandomHexColor = () => {
   return `#${Math.floor(Math.random() * 16777215)
     .toString(16)
     .padStart(6, 0)}`;
-}
+};
+
+const createBoxes = amount => {
+  let sizeBox = 30;
+  const sizeBoxIncr = 10;
+
+  for (let i = inputEl.min; i <= amount; i++) {
+    sizeBox = i === 1 ? sizeBox : sizeBox + sizeBoxIncr;
+    const box = document.createElement('div');
+    box.style.backgroundColor = getRandomHexColor();
+    box.style.width = `${sizeBox}px`;
+    box.style.height = `${sizeBox}px`;
+    boxes.append(box);
+  }
+};
 
 const createBtn = document.querySelector('[data-create]');
 const destroyBtn = document.querySelector('[data-destroy]');
@@ -19,29 +25,6 @@ const boxes = document.querySelector('#boxes');
 
 inputEl.addEventListener('change', event => {
   let amount = Number(event.currentTarget.value);
-  console.log(amount);
-
-  if (amount > 0) {
-    createBtn.addEventListener('click', () => {
-      const create = function createBoxes(amount) {
-        let sizeBox = 30;
-        let sizeBoxIncr = 10;
-
-        for (let i = inputEl.min; i <= amount; ++i) {
-          const box = document.createElement('div');
-          // box parameters
-          box.style.backgroundColor = getRandomHexColor();
-          box.style.width = `${sizeBox}px`;
-          box.style.height = `${sizeBox}px`;
-          // adding box
-          boxes.append(box);
-          console.log(box);
-          sizeBox += sizeBoxIncr;
-        }
-      };
-      create(amount);
-    });
-  }
 
   if (!Number.isInteger(amount)) {
     alert('Введіть ціле додатнє число!');
@@ -50,9 +33,12 @@ inputEl.addEventListener('change', event => {
   if (amount < 0) {
     alert('Введіть додатнє число!');
   }
+});
 
-  destroyBtn.addEventListener('click', () => {
-    boxes.innerHTML = '';
-    res();
-  });
+destroyBtn.addEventListener('click', () => {
+  boxes.innerHTML = '';
+});
+
+createBtn.addEventListener('click', () => {
+  createBoxes(inputEl.value);
 });
