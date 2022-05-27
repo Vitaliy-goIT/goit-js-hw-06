@@ -22,14 +22,12 @@ inputEl.addEventListener('change', event => {
   console.log(amount);
 
   if (amount > 0) {
-    createBtn.addEventListener('click', ev => {
-      console.dir(ev);
+    createBtn.addEventListener('click', () => {
       const create = function createBoxes(amount) {
         let sizeBox = 30;
         let sizeBoxIncr = 10;
 
         for (let i = inputEl.min; i <= amount; ++i) {
-          console.log(i);
           const box = document.createElement('div');
           // box parameters
           box.style.backgroundColor = getRandomHexColor();
@@ -55,5 +53,6 @@ inputEl.addEventListener('change', event => {
 
   destroyBtn.addEventListener('click', () => {
     boxes.innerHTML = '';
+    res();
   });
 });
